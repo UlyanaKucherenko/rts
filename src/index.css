@@ -102,11 +102,57 @@ input {
     align-items: center;
     padding: 20px 0;
     border-bottom: 1px solid white;
-    border-left: 8px solid #72DB7D;
+    border-left: 8px solid;
+    border-left-color: green;
     margin-bottom: 16px;
 }
 .listItemTask {
     display: flex;
     align-items: center;
     justify-content: flex-start;
+}
+
+.wrapTextarea {
+    position: relative;
+}
+
+textarea {
+    max-width: 500px;
+    width: 100%;
+    height: auto;
+    padding: 10px 10px 50px;
+    border-left: 8px solid;
+    border-left-color: green;
+    outline: 0;
+    outline-offset: 0;
+    border-radius: 8px;
+}
+.textareaFooter {
+    display: flex;
+    justify-content: flex-end;
+    position: absolute;
+    bottom: 5px;
+    width: 100%;
+    height: 40px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.textareaFooterRadioBtns {
+    display: flex;
+}
+
+.radio-item {
+   margin-right: 8px;
+    display: flex;
+    align-items: center;
+    color: black;
+}
+
+.radio-item input[type="radio"] {
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    margin-right: 8px;
 }

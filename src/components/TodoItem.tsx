@@ -8,10 +8,14 @@ interface ITodoItemProps extends ITodo {
 }
 
 const TodoItem: FC<ITodoItemProps> = (props) => {
-  const { id, title, complete, toggleTodo, removeTodo } = props;
+  const { id, title, complete, typeTask, toggleTodo, removeTodo } = props;
+  const borderColor = complete ? { borderLeftColor: 'gray' } : { borderLeftColor: `${typeTask}` };
+  const lineThroughText = complete
+    ? { textDecoration: ' line-through' }
+    : { textDecoration: 'none' };
 
   return (
-    <div className="wrapListItem">
+    <div className="wrapListItem" style={borderColor}>
       <div className="listItemTask">
         <input
           type="checkbox"
@@ -19,7 +23,7 @@ const TodoItem: FC<ITodoItemProps> = (props) => {
           onChange={() => toggleTodo(id)}
           className="checkbox"
         />
-        <span>{title}</span>
+        <span style={lineThroughText}>{title}</span>
       </div>
       <button onClick={() => removeTodo(id)} className="btnDelete">
         X

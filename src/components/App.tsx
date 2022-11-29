@@ -3,14 +3,15 @@ import { v4 as uuid } from 'uuid';
 
 import { TodoList } from 'components/TodoList';
 import { ITodo } from 'types/data';
-import { TodoInput } from './TodoInput';
+// import { TodoInput } from './TodoInput';
+import { TodoTextarea } from './TodoTextarea';
 
 const App: FC = () => {
   const temp = localStorage.getItem('todos');
   const persistedState = temp ? JSON.parse(temp) : [];
   const [todos, setTodos] = useState<ITodo[]>(persistedState || []);
 
-  const addTodo = (value: string) => {
+  const addTodo = (value: string, typeTask: string) => {
     if (value) {
       setTodos([
         ...todos,
@@ -18,6 +19,7 @@ const App: FC = () => {
           id: uuid(),
           title: value,
           complete: false,
+          typeTask: typeTask,
         },
       ]);
     }
@@ -33,6 +35,7 @@ const App: FC = () => {
         return {
           ...todo,
           complete: !todo.complete,
+          borderColor: 'green',
         };
       })
     );
@@ -44,7 +47,8 @@ const App: FC = () => {
     <div className="container">
       <div className="header">
         <h1>TODO</h1>
-        <TodoInput placeholder="new todo..." onchange={addTodo} />
+        <TodoTextarea placeholder="new todo..." onchange={addTodo} />
+        {/* <TodoInput placeholder="new todo..." onchange={addTodo} />*/}
       </div>
       <TodoList items={todos} removeTodo={removeTodo} toggleTodo={toggleTodo} />
     </div>
