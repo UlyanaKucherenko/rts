@@ -1,18 +1,29 @@
+import React, { FC } from 'react';
+
 import { ITodo } from 'types/data';
 
 interface ITodoItemProps extends ITodo {
-  toggleTodo: (id: number) => void;
-  removeTodo: (id: number) => void;
+  toggleTodo: (id: string) => void;
+  removeTodo: (id: string) => void;
 }
 
-const TodoItem: React.FC<ITodoItemProps> = (props) => {
+const TodoItem: FC<ITodoItemProps> = (props) => {
   const { id, title, complete, toggleTodo, removeTodo } = props;
 
   return (
-    <div>
-      <input type="checkbox" checked={complete} onChange={() => toggleTodo(id)} />
-      {title}
-      <button onClick={() => removeTodo(id)}>X</button>
+    <div className="wrapListItem">
+      <div className="listItemTask">
+        <input
+          type="checkbox"
+          checked={complete}
+          onChange={() => toggleTodo(id)}
+          className="checkbox"
+        />
+        <span>{title}</span>
+      </div>
+      <button onClick={() => removeTodo(id)} className="btnDelete">
+        X
+      </button>
     </div>
   );
 };

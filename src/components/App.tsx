@@ -1,36 +1,32 @@
-import { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, FC } from 'react';
+import { v4 as uuid } from 'uuid';
 
 import { TodoList } from 'components/TodoList';
 import { ITodo } from 'types/data';
+import { TodoInput } from './TodoInput';
 
-const App: React.FC = () => {
-  const [value, setValue] = useState('');
-  const [todos, setTodos] = useState<ITodo[]>([]);
-  const inputRef = useRef<HTMLInputElement>(null);
-  const handleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
-    setValue(e.target.value);
-  };
-  const handleKeyDown: React.KeyboardEventHandler<HTMLInputElement> = (e) => {
-    if (e.key === 'Enter') addTodo();
-  };
-  const addTodo = () => {
+const App: FC = () => {
+  const temp = localStorage.getItem('todos');
+  const persistedState = temp ? JSON.parse(temp) : [];
+  const [todos, setTodos] = useState<ITodo[]>(persistedState || []);
+
+  const addTodo = (value: string) => {
     if (value) {
       setTodos([
         ...todos,
         {
-          id: Date.now(),
+          id: uuid(),
           title: value,
           complete: false,
         },
       ]);
-      setValue('');
     }
   };
-  const removeTodo = (id: number): void => {
+  const removeTodo = (id: string): void => {
     setTodos(todos.filter((todo) => todo.id !== id));
   };
 
-  const toggleTodo = (id: number): void => {
+  const toggleTodo = (id: string): void => {
     setTodos(
       todos.map((todo) => {
         if (todo.id !== id) return todo;
@@ -41,15 +37,14 @@ const App: React.FC = () => {
       })
     );
   };
-
   useEffect(() => {
-    if (inputRef.current) inputRef.current.focus();
-  }, []);
+    localStorage.setItem('todos', JSON.stringify(todos));
+  }, [todos]);
   return (
-    <div>
-      <div>
-        <input value={value} onChange={handleChange} onKeyDown={handleKeyDown} ref={inputRef} />
-        <button onClick={addTodo}>add</button>
+    <div className="container">
+      <div className="header">
+        <h1>TODO</h1>
+        <TodoInput placeholder="new todo..." onchange={addTodo} />
       </div>
       <TodoList items={todos} removeTodo={removeTodo} toggleTodo={toggleTodo} />
     </div>

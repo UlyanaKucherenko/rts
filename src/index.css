@@ -1,0 +1,112 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    background-color: #3D3E56;
+    color: white;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.header {
+    flex: 30%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+h1 {
+    margin-bottom: 20px;
+}
+.wrapInput {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+input {
+    max-width: 400px;
+    width: 100%;
+    height: 40px;
+    border: none;
+    border-bottom-left-radius: 8px;
+    border-top-left-radius: 8px;
+    padding: 0 10px;
+    font-size: 17px;
+    border: 1px solid grey;
+    outline: 0;
+    outline-offset: 0;
+}
+
+.buttonAdd {
+    width: 70px;
+    height: 40px;
+    border: none;
+    border-bottom-right-radius: 8px;
+    border-top-right-radius: 8px;
+    cursor: pointer;
+    background-color: #5856D6;
+    color: white;
+}
+
+.buttonAdd:hover,
+.buttonAdd:active {
+    background-color: #8985FB;
+    color: white;
+}
+
+.todoList {
+    flex: 70%;
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    padding-top: 50px;
+    flex-direction: column;
+}
+
+.checkbox {
+    margin-right: 16px;
+    width: 24px;
+    height: 100%;
+    border: none;
+    background-color: lightseagreen;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    color: white;
+    cursor: pointer;
+}
+
+.btnDelete {
+    width: 24px;
+    height: 24px;
+    border: none;
+    background-color: transparent;
+    color: #ffffff;
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+.wrapList {
+    padding: 20px 0;
+}
+.wrapListItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 1px solid white;
+    border-left: 8px solid #72DB7D;
+    margin-bottom: 16px;
+}
+.listItemTask {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
